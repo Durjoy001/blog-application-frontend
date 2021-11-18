@@ -9,10 +9,13 @@ import {
   useDisclosure
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
-
+import { Link as RouterLink } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
+import { useContext, useState } from "react";
 
 
 const Header = (props) => {
+  const { isLoggedIn, login, logout, user } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
 
@@ -32,34 +35,44 @@ const Header = (props) => {
           Blog Application
         </Heading>
       </Flex>
-
-      <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
-        <HamburgerIcon />
-      </Box>
-
-      <Stack
-        direction={{ base: "column", md: "row" }}
-        display={{ base: isOpen ? "block" : "none", md: "flex" }}
-        width={{ base: "full", md: "auto" }}
-        alignItems="center"
-        flexGrow={1}
-        mt={{ base: 4, md: 0 }}
-      >
-        {/* <Text>Docs</Text>
-        <Text>Examples</Text>
-        <Text>Blog</Text> */}
-      </Stack>
-
       <Box
         display={{ base: isOpen ? "block" : "none", md: "block" }}
         mt={{ base: 4, md: 0 }}
       >
-        <Button
+        {
+          user && (
+            <Button
+              variant="outline"
+              _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+            >
+              {
+                user.name
+              }
+            </Button>
+          )
+        }
+        {
+          !isLoggedIn && (<Button as = {RouterLink} to="/login"
+            variant="outline"
+            _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+          >
+            LogIn or SignUp
+          </Button>)
+        }
+        {
+          isLoggedIn && (<Button onClick={logout}
+          variant="outline"
+          _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+        >
+          Log Out
+        </Button>)
+        }
+        {/* <Button
           variant="outline"
           _hover={{ bg: "teal.700", borderColor: "teal.700" }}
         >
           Create account
-        </Button>
+        </Button> */}
       </Box>
     </Flex>
   );
