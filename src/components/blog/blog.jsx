@@ -7,11 +7,18 @@ import {
   Text,
   Link,
   Button,
-  Stack
+  Stack,
+  Collapse,
+  Container,
+  Spacer
 } from "@chakra-ui/react";
+import { useContext, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 function Blog(props) {
-  const { name, description, creator } = props;
+  const { id,name, description, creator ,time} = props;
+  const [show, setShow] = React.useState(false);
+  const handleToggle = () => setShow(!show);
 
   return (
     <Box
@@ -49,16 +56,20 @@ function Blog(props) {
           display="block"
           fontSize="md"
           lineHeight="normal"
-          fontWeight="semibold"
+          //fontWeight="semibold"
           //href="#"
         >
-          {description}
+          {description.substring(0, 100)+"...."}
+        </Text>
+
+        <Text my={2} color="gray.500">
+          {"Author: " + creator}
         </Text>
         <Text my={2} color="gray.500">
-          {creator}
+          {time}
         </Text>
-        <Button maxWidth="100px" my={2}>
-          Click me!
+        <Button as = {RouterLink} to="/blogExpander" maxWidth="100px" my={2} align-right>
+          Show more!
         </Button>
       </Stack>
     </Box>

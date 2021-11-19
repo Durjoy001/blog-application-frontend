@@ -9,6 +9,8 @@ import Header from './components/navbar';
 import Blogs from './pages/blogs';
 import SignUp from "./pages/signUp";
 import LogIn from "./pages/logIn";
+import CreateBlog from "./pages/createBlog";
+import BlogExpander from "./components/blog/blogExpander";
 
 
 function App() {
@@ -20,7 +22,10 @@ function App() {
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={LogIn} />
               <Route exact path="/" component={Blogs} />
+              <Route exact path="/createBlog" component={CreateBlog} />
+              <Route exact path="/blogExpander" component={BlogExpander}/>
           </Switch>
+          <Footer />
       </Router>
   );
 }

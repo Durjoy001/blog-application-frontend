@@ -32,7 +32,7 @@ const Header = (props) => {
     >
       <Flex align="center" mr={5}>
         <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-          Blog Application
+          Blog Application  
         </Heading>
       </Flex>
       <Box
@@ -51,6 +51,14 @@ const Header = (props) => {
             </Button>
           )
         }
+        {
+          isLoggedIn && (<Button as = {RouterLink} to="/createBlog"
+            variant="outline"
+            _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+          >
+            Create Blog
+          </Button>)
+       }
         {
           !isLoggedIn && (<Button as = {RouterLink} to="/login"
             variant="outline"
