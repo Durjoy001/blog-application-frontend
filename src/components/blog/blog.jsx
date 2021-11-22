@@ -14,12 +14,12 @@ import {
 } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
+import BlogExpander from "./blogExpander";
 
 function Blog(props) {
   const { id,name, description, creator ,time} = props;
   const [show, setShow] = React.useState(false);
   const handleToggle = () => setShow(!show);
-
   return (
     <Box
       p={4}
@@ -68,8 +68,8 @@ function Blog(props) {
         <Text my={2} color="gray.500">
           {time}
         </Text>
-        <Button as = {RouterLink} to="/blogExpander" maxWidth="100px" my={2} align-right>
-          Show more!
+        <Button  maxWidth="100px" my={2} align-right>
+          <a href ={'http://localhost:3000/blogExpander/' + id }> Show More</a> 
         </Button>
       </Stack>
     </Box>
