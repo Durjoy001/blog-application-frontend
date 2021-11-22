@@ -31,9 +31,11 @@ const Header = (props) => {
       {...props}
     >
       <Flex align="center" mr={5}>
+      <Text as = {RouterLink} to="/">
         <Heading as="h1" size="lg" letterSpacing={"tighter"}>
           Blog Application  
         </Heading>
+      </Text>
       </Flex>
       <Box
         display={{ base: isOpen ? "block" : "none", md: "block" }}

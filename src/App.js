@@ -11,7 +11,7 @@ import SignUp from "./pages/signUp";
 import LogIn from "./pages/logIn";
 import CreateBlog from "./pages/createBlog";
 import BlogExpander from "./components/blog/blogExpander";
-
+import UpdateBlog from "./pages/updateBlog";
 
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
               <Route exact path="/" component={Blogs} />
               <Route exact path="/createBlog" component={CreateBlog} />
               <Route exact path="/blogExpander/:id" component={BlogExpander}/>
+              <Route exact path="/updateBlog/:id" component={UpdateBlog}/>
           </Switch>
           <Footer />
       </Router>

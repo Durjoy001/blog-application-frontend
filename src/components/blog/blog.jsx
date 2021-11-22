@@ -59,7 +59,7 @@ function Blog(props) {
           //fontWeight="semibold"
           //href="#"
         >
-          {description.substring(0, 100)+"...."}
+          {description.substring(0, 150)+"...."}
         </Text>
 
         <Text my={2} color="gray.500">

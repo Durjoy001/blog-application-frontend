@@ -82,11 +82,11 @@ const BlogExpander= (props) =>{
               {blogs.time}
             </Text>
             {
-              isLoggedIn && blogs.creator === user.name && (<Button as = {RouterLink} to="/createBlog"
+              isLoggedIn && blogs.creator === user.name && (<Button
                   variant="outline"
                   _hover={{ bg: "teal.700", borderColor: "teal.700" }}
                 >
-                  Create Blog
+                  <a href ={'http://localhost:3000/updateBlog/' + id}> Update Blog </a> 
                 </Button>)
             }
             {/* <Button as = {RouterLink} to="/blogExpander" maxWidth="100px" my={2} align-right>

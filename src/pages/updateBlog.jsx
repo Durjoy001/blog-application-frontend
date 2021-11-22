@@ -1,4 +1,3 @@
-import React from "react"
 import {
     Flex,
     Heading,
@@ -18,31 +17,49 @@ import {
     Text,
     Spinner
   } from "@chakra-ui/react";
-  import { FaUserAlt, FaLock } from "react-icons/fa";
-  import { AuthContext } from "../context/authContext";
-  import { useContext, useState } from "react";
-  import { Redirect, useHistory } from "react-router-dom";
-  import axios from "axios";
+import { useContext, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import { useEffect } from "react";
+import axios from "axios";
+import { AuthContext } from "../context/authContext";
+import { Redirect, useHistory } from "react-router-dom";
+import { FaUserAlt, FaLock } from "react-icons/fa";
+const CFaUserAlt = chakra(FaUserAlt);
+const CFaLock = chakra(FaLock);
 
-  const CFaUserAlt = chakra(FaUserAlt);
-  const CFaLock = chakra(FaLock);
-
-const CreateBlog = (props) => {
+const UpdateBlog = (props) =>{
     
-    const { isLoggedIn, login ,user} = useContext(AuthContext);
+    const  id  = useParams().id;
+    const [blogs, setBlogs] = useState([]);
     const [name,setName] = useState();
     const [description,setDescription] = useState();
-    const [requestState, setRequestState] = useState("not-requested");
+    const [requestState, setRequestState] = useState(false);
     const toast = useToast(); 
+    const { isLoggedIn, login ,user} = useContext(AuthContext);
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/v1/blogs/${id}`)
+        .then((res) => {
+            setBlogs(res.data.blog)
+            //console.log(blogs.creator)
+            setName(res.data.blog.name);
+           //console.log(res.data)
+            setDescription(res.data.blog.description);
+            setRequestState(true)
+        })
+        .catch((err) => {
 
-    const createBlog = (e) => {
+        });
+    },[]);
+
+    const updateBlog = (e) =>{
         e.preventDefault();
         setRequestState("loading");
-        axios.post('http://127.0.0.1:8000/api/v1/blogs',{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
+        axios.patch(`http://127.0.0.1:8000/api/v1/blogs/${id}`,{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
         .then((res) => {
             setRequestState("completed");
             toast({
-                title: "Blog successfully created!!",
+                title: "Blog successfully updated!!",
                 duration: 4000,
                 status: "success",
                 isClosable: true,
@@ -51,12 +68,12 @@ const CreateBlog = (props) => {
             setRequestState("error");
         })
     }
-    if(!isLoggedIn){
-        return <Redirect to="/" />;
+    if(!isLoggedIn ){
+        return <Redirect to={'/blogExpander/' + id }/>
     }
     else{
         return (
-            <form onSubmit={createBlog}>
+            <form onSubmit={updateBlog}>
             <Stack
             spacing={4}
             p="1rem"
@@ -70,12 +87,11 @@ const CreateBlog = (props) => {
                     children={<CFaUserAlt color="gray.300" />}
                 />
                 <Input 
-                    placeholder="Blog Title"
                     type="text"
                     resize="vertical"
                     name="name"
+                    value={name}
                     onChange={(e) => setName(e.target.value)}
-                    required
                     autoFocus
                 />
                 </InputGroup>
@@ -87,7 +103,7 @@ const CreateBlog = (props) => {
                     children={<CFaUserAlt color="gray.300" />}
                 />
                 <Input 
-                    placeholder="Blog Description"
+                    value = {description}
                     type="text"
                     //m={1}
                     name= "description"
@@ -103,7 +119,7 @@ const CreateBlog = (props) => {
                     </Text>
                 )}
                 {
-                    requestState === "completed" && (<Redirect to="/" />)
+                    requestState === "completed" && (<Redirect to={'/blogExpander/' + id }/>)
                 }
             <Button
                 borderRadius={0}
@@ -118,7 +134,8 @@ const CreateBlog = (props) => {
             </Stack>
         </form>
         )
-    }
-  }
+    } 
+    
+}
 
-export default CreateBlog;
+export default UpdateBlog;
