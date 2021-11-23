@@ -15,7 +15,8 @@ import {
     FormHelperText,
     InputRightElement,
     Text,
-    Spinner
+    Spinner,
+    Textarea
   } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
@@ -30,9 +31,11 @@ const CFaLock = chakra(FaLock);
 
 const UpdateBlog = (props) =>{
     
+    const [loaded,setLoaded] = useState(false);
     const  id  = useParams().id;
     const [blogs, setBlogs] = useState([]);
     const [name,setName] = useState();
+    const [author,setAuthor] = useState();
     const [description,setDescription] = useState();
     const [requestState, setRequestState] = useState(false);
     const toast = useToast(); 
@@ -41,11 +44,10 @@ const UpdateBlog = (props) =>{
         axios.get(`http://localhost:8000/api/v1/blogs/${id}`)
         .then((res) => {
             setBlogs(res.data.blog)
-            //console.log(blogs.creator)
             setName(res.data.blog.name);
-           //console.log(res.data)
             setDescription(res.data.blog.description);
             setRequestState(true)
+            setLoaded(true);
         })
         .catch((err) => {
 
@@ -68,7 +70,10 @@ const UpdateBlog = (props) =>{
             setRequestState("error");
         })
     }
-    if(!isLoggedIn ){
+    if(!loaded){
+        return <h1>loading...</h1>
+    }
+    else {if(!isLoggedIn){
         return <Redirect to={'/blogExpander/' + id }/>
     }
     else{
@@ -80,38 +85,21 @@ const UpdateBlog = (props) =>{
             backgroundColor="whiteAlpha.900"
             boxShadow="md"
             >
-            <FormControl>
-                <InputGroup>
-                <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                />
-                <Input 
-                    type="text"
-                    resize="vertical"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    autoFocus
-                />
-                </InputGroup>
-            </FormControl>
-            <FormControl>
-                <InputGroup>
-                <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                />
-                <Input 
-                    value = {description}
-                    type="text"
-                    //m={1}
-                    name= "description"
-                    onChange={(e) => setDescription(e.target.value)}
-                    required
-                />
-                </InputGroup>
-            </FormControl>
+            <Textarea
+                type="text"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                autoFocus
+                size="lg"
+            />
+            <Textarea
+                value = {description}
+                type="text"
+                name= "description"
+                onChange={(e) => setDescription(e.target.value)}
+                size="lg"
+            />
                 {
                     requestState === "error" && (
                     <Text display="block" fontSize="sm" color="red">
@@ -135,6 +123,7 @@ const UpdateBlog = (props) =>{
         </form>
         )
     } 
+}
     
 }
 

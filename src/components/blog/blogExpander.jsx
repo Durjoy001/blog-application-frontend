@@ -11,7 +11,8 @@ import {
   Collapse,
   Container,
   Spacer,
-  SimpleGrid
+  SimpleGrid,
+  ChakraProvider
 } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
@@ -40,12 +41,14 @@ const BlogExpander= (props) =>{
         });
     },[]);
       return (
+        <ChakraProvider>
         <Container maxW="80rem" centerContent>
         <SimpleGrid columns={[1, 1, 1, 1]}>
         <Box 
           p={4}
+          w="1000px"
           display={{ md: "flex" }}
-          maxWidth="32rem"
+          //maxWidth="62rem"
           borderWidth={1}
           margin={2}
         >
@@ -83,10 +86,11 @@ const BlogExpander= (props) =>{
             </Text>
             {
               isLoggedIn && blogs.creator === user.name && (<Button
+                   w="920px"
                   variant="outline"
                   _hover={{ bg: "teal.700", borderColor: "teal.700" }}
                 >
-                  <a href ={'http://localhost:3000/updateBlog/' + id}> Update Blog </a> 
+                  <a href ={'http://localhost:3000/updateBlog/' + id}> Update </a> 
                 </Button>)
             }
             {/* <Button as = {RouterLink} to="/blogExpander" maxWidth="100px" my={2} align-right>
@@ -96,6 +100,7 @@ const BlogExpander= (props) =>{
         </Box>
         </SimpleGrid>
         </Container>
+        </ChakraProvider>
       );
 }
 export default BlogExpander;

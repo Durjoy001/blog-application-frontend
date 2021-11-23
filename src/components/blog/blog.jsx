@@ -24,7 +24,7 @@ function Blog(props) {
     <Box
       p={4}
       display={{ md: "flex" }}
-      maxWidth="32rem"
+      maxWidth="62rem"
       borderWidth={1}
       margin={2}
     >

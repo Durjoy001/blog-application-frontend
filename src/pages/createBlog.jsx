@@ -16,7 +16,8 @@ import {
     FormHelperText,
     InputRightElement,
     Text,
-    Spinner
+    Spinner,
+    Textarea
   } from "@chakra-ui/react";
   import { FaUserAlt, FaLock } from "react-icons/fa";
   import { AuthContext } from "../context/authContext";
@@ -63,39 +64,22 @@ const CreateBlog = (props) => {
             backgroundColor="whiteAlpha.900"
             boxShadow="md"
             >
-            <FormControl>
-                <InputGroup>
-                <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                />
-                <Input 
-                    placeholder="Blog Title"
-                    type="text"
-                    resize="vertical"
-                    name="name"
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    autoFocus
-                />
-                </InputGroup>
-            </FormControl>
-            <FormControl>
-                <InputGroup>
-                <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                />
-                <Input 
-                    placeholder="Blog Description"
-                    type="text"
-                    //m={1}
-                    name= "description"
-                    onChange={(e) => setDescription(e.target.value)}
-                    required
-                />
-                </InputGroup>
-            </FormControl>
+            <Textarea
+                placeholder="Blog Title"
+                type = "text"
+                name = "name"
+                onChange={(e) => setName(e.target.value)}
+                required
+                size="lg"
+            />
+            <Textarea
+                placeholder="Blog Description"
+                type="text"
+                name= "description"
+                onChange={(e) => setDescription(e.target.value)}
+                required
+                size="lg"
+            />
                 {
                     requestState === "error" && (
                     <Text display="block" fontSize="sm" color="red">
