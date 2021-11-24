@@ -27,7 +27,7 @@ function App() {
               <Route exact path="/blogExpander/:id" component={BlogExpander}/>
               <Route exact path="/updateBlog/:id" component={UpdateBlog}/>
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
       </Router>
   );
 }

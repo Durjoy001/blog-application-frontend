@@ -60,7 +60,7 @@ const Header = (props) => {
           >
             Create Blog
           </Button>)
-       }
+        }
         {
           !isLoggedIn && (<Button as = {RouterLink} to="/login"
             variant="outline"

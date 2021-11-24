@@ -46,6 +46,7 @@ const UpdateBlog = (props) =>{
             setBlogs(res.data.blog)
             setName(res.data.blog.name);
             setDescription(res.data.blog.description);
+            setAuthor(res.data.blog.creator);
             setRequestState(true)
             setLoaded(true);
         })
@@ -73,7 +74,7 @@ const UpdateBlog = (props) =>{
     if(!loaded){
         return <h1>loading...</h1>
     }
-    else {if(!isLoggedIn){
+    else {if(!isLoggedIn || author !== user.name){
         return <Redirect to={'/blogExpander/' + id }/>
     }
     else{
@@ -81,11 +82,12 @@ const UpdateBlog = (props) =>{
             <form onSubmit={updateBlog}>
             <Stack
             spacing={4}
-            p="1rem"
+            p="10rem"
             backgroundColor="whiteAlpha.900"
             boxShadow="md"
             >
             <Textarea
+                rows="3"
                 type="text"
                 name="name"
                 value={name}
@@ -94,6 +96,7 @@ const UpdateBlog = (props) =>{
                 size="lg"
             />
             <Textarea
+                rows="10"
                 value = {description}
                 type="text"
                 name= "description"
@@ -116,7 +119,7 @@ const UpdateBlog = (props) =>{
                 colorScheme="teal"
                 width="full"
             >
-              SUBMIT
+              UPDATE
             </Button>
             
             </Stack>

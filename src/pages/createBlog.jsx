@@ -27,6 +27,7 @@ import {
 
   const CFaUserAlt = chakra(FaUserAlt);
   const CFaLock = chakra(FaLock);
+  
 
 const CreateBlog = (props) => {
     
@@ -60,11 +61,12 @@ const CreateBlog = (props) => {
             <form onSubmit={createBlog}>
             <Stack
             spacing={4}
-            p="1rem"
+            p="10rem"
             backgroundColor="whiteAlpha.900"
             boxShadow="md"
             >
             <Textarea
+                rows="3"
                 placeholder="Blog Title"
                 type = "text"
                 name = "name"
@@ -73,6 +75,7 @@ const CreateBlog = (props) => {
                 size="lg"
             />
             <Textarea
+                rows="10"
                 placeholder="Blog Description"
                 type="text"
                 name= "description"

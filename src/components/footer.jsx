@@ -10,8 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
-
-
 const Footer = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
@@ -45,22 +43,7 @@ const Footer = (props) => {
         flexGrow={1}
         mt={{ base: 4, md: 0 }}
       >
-        {/* <Text>Docs</Text>
-        <Text>Examples</Text>
-        <Text>Blog</Text> */}
       </Stack>
-
-      {/* <Box
-        display={{ base: isOpen ? "block" : "none", md: "block" }}
-        mt={{ base: 4, md: 0 }}
-      >
-        <Button
-          variant="outline"
-          _hover={{ bg: "teal.700", borderColor: "teal.700" }}
-        >
-          Create account
-        </Button>
-      </Box> */}
     </Flex>
   );
 };
