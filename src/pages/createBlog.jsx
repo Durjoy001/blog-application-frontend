@@ -18,7 +18,7 @@ import {
     Text,
     Spinner,
     Textarea
-  } from "@chakra-ui/react";
+}from "@chakra-ui/react";
   import { FaUserAlt, FaLock } from "react-icons/fa";
   import { AuthContext } from "../context/authContext";
   import { useContext, useState } from "react";
@@ -28,9 +28,7 @@ import {
   const CFaUserAlt = chakra(FaUserAlt);
   const CFaLock = chakra(FaLock);
   
-
-const CreateBlog = (props) => {
-    
+  const CreateBlog = (props) => {
     const { isLoggedIn, login ,user} = useContext(AuthContext);
     const [name,setName] = useState();
     const [description,setDescription] = useState();
@@ -59,53 +57,52 @@ const CreateBlog = (props) => {
     else{
         return (
             <form onSubmit={createBlog}>
-            <Stack
-            spacing={4}
-            p="10rem"
-            backgroundColor="whiteAlpha.900"
-            boxShadow="md"
-            >
-            <Textarea
-                rows="3"
-                placeholder="Blog Title"
-                type = "text"
-                name = "name"
-                onChange={(e) => setName(e.target.value)}
-                required
-                size="lg"
-            />
-            <Textarea
-                rows="10"
-                placeholder="Blog Description"
-                type="text"
-                name= "description"
-                onChange={(e) => setDescription(e.target.value)}
-                required
-                size="lg"
-            />
-                {
-                    requestState === "error" && (
-                    <Text display="block" fontSize="sm" color="red">
-                    Something Went Wrong!! Please Try Again.
-                    </Text>
-                )}
-                {
-                    requestState === "completed" && (<Redirect to="/" />)
-                }
-            <Button
-                borderRadius={0}
-                type="submit"
-                variant="solid"
-                colorScheme="teal"
-                width="full"
-            >
-              SUBMIT
-            </Button>
-            
-            </Stack>
-        </form>
+                <Stack
+                spacing={4}
+                p="10rem"
+                backgroundColor="whiteAlpha.900"
+                boxShadow="md"
+                >
+                    <Textarea
+                        rows="3"
+                        placeholder="Blog Title"
+                        type = "text"
+                        name = "name"
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        size="lg"
+                    />
+                    <Textarea
+                        rows="10"
+                        placeholder="Blog Description"
+                        type="text"
+                        name= "description"
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                        size="lg"
+                    />
+                    {
+                        requestState === "error" && (
+                        <Text display="block" fontSize="sm" color="red">
+                        Something Went Wrong!! Please Try Again.
+                        </Text>
+                    )}
+                    {
+                        requestState === "completed" && (<Redirect to="/" />)
+                    }
+                    <Button
+                        borderRadius={0}
+                        type="submit"
+                        variant="solid"
+                        colorScheme="teal"
+                        width="full"
+                    >
+                        SUBMIT
+                    </Button>
+                </Stack>
+            </form>
         )
     }
-  }
+}
 
 export default CreateBlog;

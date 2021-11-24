@@ -17,7 +17,7 @@ import {
     Text,
     Spinner,
     Textarea
-  } from "@chakra-ui/react";
+} from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { useParams } from 'react-router-dom';
@@ -30,7 +30,6 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 const UpdateBlog = (props) =>{
-    
     const [loaded,setLoaded] = useState(false);
     const  id  = useParams().id;
     const [blogs, setBlogs] = useState([]);
@@ -74,60 +73,58 @@ const UpdateBlog = (props) =>{
     if(!loaded){
         return <h1>loading...</h1>
     }
-    else {if(!isLoggedIn || author !== user.name){
-        return <Redirect to={'/blogExpander/' + id }/>
-    }
-    else{
-        return (
-            <form onSubmit={updateBlog}>
-            <Stack
-            spacing={4}
-            p="10rem"
-            backgroundColor="whiteAlpha.900"
-            boxShadow="md"
-            >
-            <Textarea
-                rows="3"
-                type="text"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                autoFocus
-                size="lg"
-            />
-            <Textarea
-                rows="10"
-                value = {description}
-                type="text"
-                name= "description"
-                onChange={(e) => setDescription(e.target.value)}
-                size="lg"
-            />
-                {
-                    requestState === "error" && (
-                    <Text display="block" fontSize="sm" color="red">
-                    Something Went Wrong!! Please Try Again.
-                    </Text>
-                )}
-                {
-                    requestState === "completed" && (<Redirect to={'/blogExpander/' + id }/>)
-                }
-            <Button
-                borderRadius={0}
-                type="submit"
-                variant="solid"
-                colorScheme="teal"
-                width="full"
-            >
-              UPDATE
-            </Button>
-            
-            </Stack>
-        </form>
-        )
-    } 
+    else {
+        if(!isLoggedIn || author !== user.name){
+            return <Redirect to={'/blogExpander/' + id }/>
+        }
+        else{
+            return (
+                <form onSubmit={updateBlog}>
+                    <Stack
+                        spacing={4}
+                        p="10rem"
+                        backgroundColor="whiteAlpha.900"
+                        boxShadow="md"
+                    >
+                        <Textarea
+                            rows="3"
+                            type="text"
+                            name="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            autoFocus
+                            size="lg"
+                        />
+                        <Textarea
+                            rows="10"
+                            value = {description}
+                            type="text"
+                            name= "description"
+                            onChange={(e) => setDescription(e.target.value)}
+                            size="lg"
+                        />
+                        {
+                            requestState === "error" && (
+                            <Text display="block" fontSize="sm" color="red">
+                            Something Went Wrong!! Please Try Again.
+                            </Text>
+                        )}
+                        {
+                            requestState === "completed" && (<Redirect to={'/blogExpander/' + id }/>)
+                        }
+                        <Button
+                            borderRadius={0}
+                            type="submit"
+                            variant="solid"
+                            colorScheme="teal"
+                            width="full"
+                        >
+                        UPDATE
+                        </Button>
+                    </Stack>
+                </form>
+            )
+        } 
+    }   
 }
-    
-}
-
 export default UpdateBlog;

@@ -13,7 +13,6 @@ import { Link as RouterLink } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import { useContext, useState } from "react";
 
-
 const Header = (props) => {
   const { isLoggedIn, login, logout, user } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -31,11 +30,11 @@ const Header = (props) => {
       {...props}
     >
       <Flex align="center" mr={5}>
-      <Text as = {RouterLink} to="/">
-        <Heading as="h1" size="lg" letterSpacing={"tighter"}>
-          Blog Application  
-        </Heading>
-      </Text>
+        <Text as = {RouterLink} to="/">
+          <Heading as="h1" size="lg" letterSpacing={"tighter"}>
+            Blog Application  
+          </Heading>
+        </Text>
       </Flex>
       <Box
         display={{ base: isOpen ? "block" : "none", md: "block" }}
@@ -73,16 +72,10 @@ const Header = (props) => {
           isLoggedIn && (<Button onClick={logout}
           variant="outline"
           _hover={{ bg: "teal.700", borderColor: "teal.700" }}
-        >
-          Log Out
-        </Button>)
+          >
+            Log Out
+          </Button>)
         }
-        {/* <Button
-          variant="outline"
-          _hover={{ bg: "teal.700", borderColor: "teal.700" }}
-        >
-          Create account
-        </Button> */}
       </Box>
     </Flex>
   );
