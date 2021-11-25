@@ -75,7 +75,7 @@ const UpdateBlog = (props) =>{
     }
     else {
         if(!isLoggedIn || author !== user.name){
-            return <Redirect to={'/blogExpander/' + id }/>
+            return <Redirect to={'/blogs/view/' + id }/>
         }
         else{
             return (
@@ -110,7 +110,7 @@ const UpdateBlog = (props) =>{
                             </Text>
                         )}
                         {
-                            requestState === "completed" && (<Redirect to={'/blogExpander/' + id }/>)
+                            requestState === "completed" && (<Redirect to={'/blogs/view/' + id }/>)
                         }
                         <Button
                             borderRadius={0}

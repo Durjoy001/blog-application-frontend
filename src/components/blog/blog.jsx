@@ -49,7 +49,7 @@ function Blog(props) {
             fontSize="md"
             lineHeight="normal"
           >
-              {description.substring(0, 150)+"...."}
+              {description.substring(0, 200)+"...."}
           </Text>
 
           <Text my={2} color="gray.500">
@@ -59,7 +59,7 @@ function Blog(props) {
             {"Created at: " +time}
           </Text>
           <Button  maxWidth="100px" my={2} align-right>
-            <a href ={'http://localhost:3000/blogExpander/' + id }> Show More</a> 
+            <a href ={'http://localhost:3000/blogs/view/' + id }> Show More</a> 
           </Button>
         </Stack>
     </Box>

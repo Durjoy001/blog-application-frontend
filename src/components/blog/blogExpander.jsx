@@ -115,7 +115,7 @@ const BlogExpander= (props) =>{
                           variant="outline"
                           _hover={{ bg: "teal.700", borderColor: "teal.700" }}
                         >
-                        <a href ={'http://localhost:3000/updateBlog/' + id}> Update </a> 
+                        <a href ={'http://localhost:3000/blogs/' + id}> Update </a> 
                       </Button>)
                     }
                     {

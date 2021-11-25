@@ -53,7 +53,7 @@ const Header = (props) => {
           )
         }
         {
-          isLoggedIn && (<Button as = {RouterLink} to="/createBlog"
+          isLoggedIn && (<Button as = {RouterLink} to="/blogs"
             variant="outline"
             _hover={{ bg: "teal.700", borderColor: "teal.700" }}
           >

@@ -18,14 +18,13 @@ function App() {
   return (
       <Router>
           <Header />
-          {/* <SignIn /> */}
           <Switch>
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/login" component={LogIn} />
               <Route exact path="/" component={Blogs} />
-              <Route exact path="/createBlog" component={CreateBlog} />
-              <Route exact path="/blogExpander/:id" component={BlogExpander}/>
-              <Route exact path="/updateBlog/:id" component={UpdateBlog}/>
+              <Route exact path="/blogs" component={CreateBlog} />
+              <Route exact path="/blogs/view/:id" component={BlogExpander}/>
+              <Route exact path="/blogs/:id" component={UpdateBlog}/>
           </Switch>
           {/* <Footer /> */}
       </Router>
