@@ -59,7 +59,7 @@ function Blog(props) {
             {"Created at: " +time}
           </Text>
           <Button  maxWidth="100px" my={2} align-right>
-            <a href ={'http://localhost:3000/blogs/view/' + id }> Show More</a> 
+            <a href ={'/blogs/view/' + id }> Show More</a> 
           </Button>
         </Stack>
     </Box>
