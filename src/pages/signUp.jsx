@@ -36,6 +36,7 @@ import {
     const [password, setPassword] = useState();
     const [passwordConfirm, setpasswordConfirm] = useState();
     const [requestState, setRequestState] = useState("not-requested");
+    const [error,setError] = useState();
     const toast = useToast(); 
 
     const signUp = (e) => {
@@ -51,6 +52,15 @@ import {
                 isClosable: true,
             });
         }).catch((err) => {
+            if(err.response.data.errors){
+                setError(err.response.data.errors[0]);
+            }
+            else if(err.response.data.message.message){
+                setError(err.response.data.message.errors.passwordConfirm.message);
+            }          
+            else{
+                setError("User name already exists")
+            }
             setRequestState("error");
         })
     }
@@ -67,122 +77,121 @@ import {
             backgroundColor="gray.200"
             justifyContent="center"
             alignItems="center"
-            >
+        >
             <Stack
                 flexDir="column"
                 mb="2"
                 justifyContent="center"
                 alignItems="center"
             >
-            <Avatar bg="teal.500" />
-            <Heading color="teal.400">Welcome</Heading>
-            <Box minW={{ base: "90%", md: "468px" }}>
-            <form onSubmit={signUp}>
-                <Stack
-                spacing={4}
-                p="1rem"
-                backgroundColor="whiteAlpha.900"
-                boxShadow="md"
-                >
-                <FormControl>
-                    <InputGroup>
-                    <InputLeftElement
-                        pointerEvents="none"
-                        children={<CFaUserAlt color="gray.300" />}
-                    />
-                    <Input 
-                        placeholder="Name"
-                        type="text"
-                        name="name"
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        autoFocus
-                    />
-                    </InputGroup>
-                </FormControl>
-                <FormControl>
-                    <InputGroup>
-                    <InputLeftElement
-                        pointerEvents="none"
-                        children={<CFaUserAlt color="gray.300" />}
-                    />
-                    <Input 
-                        placeholder="Email"
-                        type="email"
-                        //m={1}
-                        name="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                    </InputGroup>
-                </FormControl>
-                <FormControl>
-                    <InputGroup>
-                    <InputLeftElement
-                        pointerEvents="none"
-                        color="gray.300"
-                        children={<CFaLock color="gray.300" />}
-                    />
-                    <Input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Password"
-                        name="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                    <InputRightElement width="4.5rem">
-                        <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                        {showPassword ? "Hide" : "Show"}
-                        </Button>
-                    </InputRightElement>
-                    </InputGroup>
-                </FormControl>
-                <FormControl>
-                    <InputGroup>
-                    <InputLeftElement
-                        pointerEvents="none"
-                        color="gray.300"
-                        children={<CFaLock color="gray.300" />}
-                    />
-                    <Input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Confirm Password"
-                        name="passwordConfirm"
-                        onChange={(e) => setpasswordConfirm(e.target.value)}
-                        required
-                    />
-                    <InputRightElement width="4.5rem">
-                        <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                        {showPassword ? "Hide" : "Show"}
-                        </Button>
-                    </InputRightElement>
-                    </InputGroup>
-                </FormControl>
-                {
-                    requestState === "error" && (
-                    <Text display="block" fontSize="sm" color="red">
-                    Something Went Wrong!! Please Try Again.
-                    </Text>
-                )}
-                {
-                    requestState === "completed" && (<Redirect to="/login" />)
-                }
-                <Button
-                    borderRadius={0}
-                    type="submit"
-                    variant="solid"
-                    colorScheme="teal"
-                    width="full"
-                    disabled={requestState === "loading" ? 1 : 0}
-                >
-                {requestState === "loading" && <Spinner mr={3} />}SignUp
-                </Button>
-                
-                </Stack>
-            </form>
-            </Box>
-        </Stack>
-    </Flex>
+                <Avatar bg="teal.500" />
+                <Heading color="teal.400">Welcome</Heading>
+                <Box minW={{ base: "90%", md: "468px" }}>
+                    <form onSubmit={signUp}>
+                        <Stack
+                            spacing={4}
+                            p="1rem"
+                            backgroundColor="whiteAlpha.900"
+                            boxShadow="md"
+                        >
+                            <FormControl>
+                                <InputGroup>
+                                    <InputLeftElement
+                                        pointerEvents="none"
+                                        children={<CFaUserAlt color="gray.300" />}
+                                    />
+                                    <Input 
+                                        placeholder="Name"
+                                        type="text"
+                                        name="name"
+                                        onChange={(e) => setName(e.target.value)}
+                                        required
+                                        autoFocus
+                                    />
+                                </InputGroup>
+                            </FormControl>
+                            <FormControl>
+                                <InputGroup>
+                                    <InputLeftElement
+                                        pointerEvents="none"
+                                        children={<CFaUserAlt color="gray.300" />}
+                                    />
+                                    <Input 
+                                        placeholder="Email"
+                                        type="email"
+                                        //m={1}
+                                        name="email"
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+                                </InputGroup>
+                            </FormControl>
+                            <FormControl>
+                                <InputGroup>
+                                    <InputLeftElement
+                                        pointerEvents="none"
+                                        color="gray.300"
+                                        children={<CFaLock color="gray.300" />}
+                                    />
+                                    <Input
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Password"
+                                        name="password"
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                    <InputRightElement width="4.5rem">
+                                        <Button h="1.75rem" size="sm" onClick={handleShowClick}>
+                                        {showPassword ? "Hide" : "Show"}
+                                        </Button>
+                                    </InputRightElement>
+                                </InputGroup>
+                            </FormControl>
+                            <FormControl>
+                                <InputGroup>
+                                    <InputLeftElement
+                                        pointerEvents="none"
+                                        color="gray.300"
+                                        children={<CFaLock color="gray.300" />}
+                                    />
+                                    <Input
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Confirm Password"
+                                        name="passwordConfirm"
+                                        onChange={(e) => setpasswordConfirm(e.target.value)}
+                                        required
+                                    />
+                                    <InputRightElement width="4.5rem">
+                                        <Button h="1.75rem" size="sm" onClick={handleShowClick}>
+                                        {showPassword ? "Hide" : "Show"}
+                                        </Button>
+                                    </InputRightElement>
+                                </InputGroup>
+                            </FormControl>
+                            {
+                                requestState === "error" && (
+                                <Text display="block" fontSize="sm" color="red">
+                                {error}
+                                </Text>
+                            )}
+                            {
+                                requestState === "completed" && (<Redirect to="/login" />)
+                            }
+                            <Button
+                                borderRadius={0}
+                                type="submit"
+                                variant="solid"
+                                colorScheme="teal"
+                                width="full"
+                                disabled={requestState === "loading" ? 1 : 0}
+                            >
+                            {requestState === "loading" && <Spinner mr={3} />}SignUp
+                            </Button>
+                        </Stack>
+                    </form>
+                </Box>
+            </Stack>
+        </Flex>
     );
   }
   export default SignUp;

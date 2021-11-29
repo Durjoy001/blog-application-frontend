@@ -6,7 +6,6 @@ import Blog from "../components/blog/blog";
 import { ChakraProvider, SimpleGrid, Container } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
-
 const Blogs = (props) => {
     const [blogs, setBlogs] = useState([]);
     useEffect(() => {

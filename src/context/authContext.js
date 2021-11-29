@@ -24,7 +24,7 @@ const AuthProvider = (props) =>{
          localStorage.setItem("user",JSON.stringify(userDetails));
      };
      return(
-         <AuthContext.Provider
+        <AuthContext.Provider
             value={
                 {
                     isLoggedIn,
@@ -36,8 +36,8 @@ const AuthProvider = (props) =>{
                 {
                     props.children
                 }
-            </AuthContext.Provider>
-     )
+        </AuthContext.Provider>
+    )
 }
 
 export{ AuthContext,AuthProvider };

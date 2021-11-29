@@ -16,8 +16,9 @@ import {
     FormHelperText,
     InputRightElement,
     Text,
-    Spinner
-  } from "@chakra-ui/react";
+    Spinner,
+    Textarea
+}from "@chakra-ui/react";
   import { FaUserAlt, FaLock } from "react-icons/fa";
   import { AuthContext } from "../context/authContext";
   import { useContext, useState } from "react";
@@ -26,20 +27,18 @@ import {
 
   const CFaUserAlt = chakra(FaUserAlt);
   const CFaLock = chakra(FaLock);
-
-const CreateBlog = (props) => {
-    
+  
+  const CreateBlog = (props) => {
     const { isLoggedIn, login ,user} = useContext(AuthContext);
     const [name,setName] = useState();
     const [description,setDescription] = useState();
     const [requestState, setRequestState] = useState("not-requested");
+    const [error,setError] = useState();
     const toast = useToast(); 
 
     const createBlog = (e) => {
         e.preventDefault();
         setRequestState("loading");
-        console.log(name)
-        console.log(description)
         axios.post('http://127.0.0.1:8000/api/v1/blogs',{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
         .then((res) => {
             setRequestState("completed");
@@ -50,6 +49,7 @@ const CreateBlog = (props) => {
                 isClosable: true,
             });
         }).catch((err) => {
+            setError(err.response.data.errors[0]);
             setRequestState("error");
         })
     }
@@ -59,68 +59,52 @@ const CreateBlog = (props) => {
     else{
         return (
             <form onSubmit={createBlog}>
-            <Stack
-            spacing={4}
-            p="1rem"
-            backgroundColor="whiteAlpha.900"
-            boxShadow="md"
-            >
-            <FormControl>
-                <InputGroup>
-                <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                />
-                <Input 
-                    placeholder="Blog Title"
-                    type="text"
-                    resize="vertical"
-                    name="name"
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    autoFocus
-                />
-                </InputGroup>
-            </FormControl>
-            <FormControl>
-                <InputGroup>
-                <InputLeftElement
-                    pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
-                />
-                <Input 
-                    placeholder="Blog Description"
-                    type="text"
-                    //m={1}
-                    name= "description"
-                    onChange={(e) => setDescription(e.target.value)}
-                    required
-                />
-                </InputGroup>
-            </FormControl>
-                {
-                    requestState === "error" && (
-                    <Text display="block" fontSize="sm" color="red">
-                    Something Went Wrong!! Please Try Again.
-                    </Text>
-                )}
-                {
-                    requestState === "completed" && (<Redirect to="/" />)
-                }
-            <Button
-                borderRadius={0}
-                type="submit"
-                variant="solid"
-                colorScheme="teal"
-                width="full"
-            >
-              SUBMIT
-            </Button>
-            
-            </Stack>
-        </form>
+                <Stack
+                spacing={4}
+                p="5rem"
+                backgroundColor="whiteAlpha.900"
+                boxShadow="md"
+                >
+                    <Textarea
+                        rows="3"
+                        placeholder="Blog Title"
+                        type = "text"
+                        name = "name"
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        size="lg"
+                    />
+                    <Textarea
+                        rows="10"
+                        placeholder="Blog Description"
+                        type="text"
+                        name= "description"
+                        onChange={(e) => setDescription(e.target.value)}
+                        required
+                        size="lg"
+                    />
+                    {
+                        requestState === "error" && (
+                        <Text display="block" fontSize="sm" color="red">
+                        {error}
+                        </Text>
+                    )}
+                    {
+                        requestState === "completed" && (<Redirect to="/" />)
+                    }
+                    <Button
+                        borderRadius={0}
+                        type="submit"
+                        variant="solid"
+                        colorScheme="teal"
+                        width="full"
+                    >
+                        SUBMIT
+                    </Button>
+                </Stack>
+            </form>
         )
     }
-  }
+}
 
 export default CreateBlog;
