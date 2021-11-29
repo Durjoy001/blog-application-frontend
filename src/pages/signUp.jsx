@@ -36,6 +36,7 @@ import {
     const [password, setPassword] = useState();
     const [passwordConfirm, setpasswordConfirm] = useState();
     const [requestState, setRequestState] = useState("not-requested");
+    const [error,setError] = useState();
     const toast = useToast(); 
 
     const signUp = (e) => {
@@ -51,6 +52,15 @@ import {
                 isClosable: true,
             });
         }).catch((err) => {
+            if(err.response.data.errors){
+                setError(err.response.data.errors[0]);
+            }
+            else if(err.response.data.message.message){
+                setError(err.response.data.message.errors.passwordConfirm.message);
+            }          
+            else{
+                setError("User name already exists")
+            }
             setRequestState("error");
         })
     }
@@ -161,7 +171,7 @@ import {
                             {
                                 requestState === "error" && (
                                 <Text display="block" fontSize="sm" color="red">
-                                Something Went Wrong!! Please Try Again.
+                                {error}
                                 </Text>
                             )}
                             {

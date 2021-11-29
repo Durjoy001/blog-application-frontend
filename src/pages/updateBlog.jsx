@@ -37,6 +37,7 @@ const UpdateBlog = (props) =>{
     const [author,setAuthor] = useState();
     const [description,setDescription] = useState();
     const [requestState, setRequestState] = useState(false);
+    const [error,setError] = useState();
     const toast = useToast(); 
     const { isLoggedIn, login ,user} = useContext(AuthContext);
     useEffect(() => {
@@ -67,6 +68,7 @@ const UpdateBlog = (props) =>{
                 isClosable: true,
             });
         }).catch((err) => {
+            setError(err.response.data.errors[0]);
             setRequestState("error");
         })
     }
@@ -82,7 +84,7 @@ const UpdateBlog = (props) =>{
                 <form onSubmit={updateBlog}>
                     <Stack
                         spacing={4}
-                        p="10rem"
+                        p="5rem"
                         backgroundColor="whiteAlpha.900"
                         boxShadow="md"
                     >
@@ -106,7 +108,7 @@ const UpdateBlog = (props) =>{
                         {
                             requestState === "error" && (
                             <Text display="block" fontSize="sm" color="red">
-                            Something Went Wrong!! Please Try Again.
+                            {error}
                             </Text>
                         )}
                         {

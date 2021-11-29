@@ -33,6 +33,7 @@ import {
     const [name,setName] = useState();
     const [description,setDescription] = useState();
     const [requestState, setRequestState] = useState("not-requested");
+    const [error,setError] = useState();
     const toast = useToast(); 
 
     const createBlog = (e) => {
@@ -48,6 +49,7 @@ import {
                 isClosable: true,
             });
         }).catch((err) => {
+            setError(err.response.data.errors[0]);
             setRequestState("error");
         })
     }
@@ -59,7 +61,7 @@ import {
             <form onSubmit={createBlog}>
                 <Stack
                 spacing={4}
-                p="10rem"
+                p="5rem"
                 backgroundColor="whiteAlpha.900"
                 boxShadow="md"
                 >
@@ -84,7 +86,7 @@ import {
                     {
                         requestState === "error" && (
                         <Text display="block" fontSize="sm" color="red">
-                        Something Went Wrong!! Please Try Again.
+                        {error}
                         </Text>
                     )}
                     {
