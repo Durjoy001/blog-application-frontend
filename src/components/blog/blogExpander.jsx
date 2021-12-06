@@ -41,7 +41,7 @@ const BlogExpander= (props) =>{
     const cancelRef = React.useRef()
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/v1/blogs/${id}`)
+        axios.get(`/api/v1/blogs/${id}`)
         .then((res) => {
             setBlogs(res.data.blog);
         })
@@ -53,7 +53,7 @@ const BlogExpander= (props) =>{
     const deleteBlog = (e) =>{
       e.preventDefault();
       setRequestState("loading");
-      axios.delete(`http://127.0.0.1:8000/api/v1/blogs/${id}`,{ headers:{"Authorization" : `Bearer ${user.token}`}})
+      axios.delete(`/api/v1/blogs/${id}`,{ headers:{"Authorization" : `Bearer ${user.token}`}})
       .then((res) => {
           setRequestState("completed");
           toast({

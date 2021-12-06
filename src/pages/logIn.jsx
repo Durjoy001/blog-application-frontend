@@ -37,7 +37,7 @@ const LogIn = (props) => {
     const logIn = (e) =>{
         e.preventDefault();
         setRequestState("loading");
-        axios.post('http://127.0.0.1:8000/api/v1/users/login',{email,password})
+        axios.post('/api/v1/users/login',{email,password})
         .then((res) => {
             setRequestState("completed");
             login(res.data);

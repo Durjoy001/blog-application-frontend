@@ -36,6 +36,9 @@ const Header = (props) => {
           </Heading>
         </Text>
       </Flex>
+      <Box display={{ base: "block", md: "none" }} onClick={handleToggle}>
+        <HamburgerIcon />
+      </Box>
       <Box
         display={{ base: isOpen ? "block" : "none", md: "block" }}
         mt={{ base: 4, md: 0 }}

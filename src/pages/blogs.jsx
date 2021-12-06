@@ -9,7 +9,7 @@ import { Link as RouterLink } from "react-router-dom";
 const Blogs = (props) => {
     const [blogs, setBlogs] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:8000/api/v1/blogs')
+        axios.get('/api/v1/blogs')
         .then((res) => {
             setBlogs(res.data.blog);
         })

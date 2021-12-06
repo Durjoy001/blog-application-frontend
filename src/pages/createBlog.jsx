@@ -39,7 +39,7 @@ import {
     const createBlog = (e) => {
         e.preventDefault();
         setRequestState("loading");
-        axios.post('http://127.0.0.1:8000/api/v1/blogs',{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
+        axios.post('/api/v1/blogs',{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
         .then((res) => {
             setRequestState("completed");
             toast({

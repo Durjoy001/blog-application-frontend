@@ -41,7 +41,7 @@ const UpdateBlog = (props) =>{
     const toast = useToast(); 
     const { isLoggedIn, login ,user} = useContext(AuthContext);
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/v1/blogs/${id}`)
+        axios.get(`/api/v1/blogs/${id}`)
         .then((res) => {
             setBlogs(res.data.blog)
             setName(res.data.blog.name);
@@ -58,7 +58,7 @@ const UpdateBlog = (props) =>{
     const updateBlog = (e) =>{
         e.preventDefault();
         setRequestState("loading");
-        axios.patch(`http://127.0.0.1:8000/api/v1/blogs/${id}`,{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
+        axios.patch(`/api/v1/blogs/${id}`,{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
         .then((res) => {
             setRequestState("completed");
             toast({
