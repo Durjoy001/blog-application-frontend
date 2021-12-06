@@ -58,7 +58,7 @@ const UpdateBlog = (props) =>{
     const updateBlog = (e) =>{
         e.preventDefault();
         setRequestState("loading");
-        axios.patch(`/api/v1/blogs/${id}`,{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
+        axios.patch(`https://blog-application-backend001.herokuapp.com/api/v1/blogs/${id}`,{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
         .then((res) => {
             setRequestState("completed");
             toast({

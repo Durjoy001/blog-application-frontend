@@ -39,7 +39,7 @@ import {
     const createBlog = (e) => {
         e.preventDefault();
         setRequestState("loading");
-        axios.post('/api/v1/blogs',{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
+        axios.post('https://blog-application-backend001.herokuapp.com/api/v1/blogs',{name,description},{ headers:{"Authorization" : `Bearer ${user.token}`}})
         .then((res) => {
             setRequestState("completed");
             toast({

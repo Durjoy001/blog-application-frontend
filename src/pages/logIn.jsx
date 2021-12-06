@@ -37,7 +37,7 @@ const LogIn = (props) => {
     const logIn = (e) =>{
         e.preventDefault();
         setRequestState("loading");
-        axios.post('/api/v1/users/login',{email,password})
+        axios.post('https://blog-application-backend001.herokuapp.com/api/v1/users/login',{email,password})
         .then((res) => {
             setRequestState("completed");
             login(res.data);
