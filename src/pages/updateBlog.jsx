@@ -41,7 +41,7 @@ const UpdateBlog = (props) =>{
     const toast = useToast(); 
     const { isLoggedIn, login ,user} = useContext(AuthContext);
     useEffect(() => {
-        axios.get(`/api/v1/blogs/${id}`)
+        axios.get(`https://blog-application-backend001.herokuapp.com/api/v1/blogs/${id}`)
         .then((res) => {
             setBlogs(res.data.blog)
             setName(res.data.blog.name);
