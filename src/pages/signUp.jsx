@@ -46,7 +46,7 @@ import {
     const signUp = (e) => {
         e.preventDefault();
         setRequestState("loading");
-        axios.post('https://blog-application-backend001.herokuapp.com/api/v1/users/signup', {name,email,password,passwordConfirm})
+        axios.post('https://blog-application-backend101.herokuapp.com/api/v1/users/signup', {name,email,password,passwordConfirm})
         .then((res) => {
             setRequestState("completed");
             toast({

@@ -41,7 +41,7 @@ const BlogExpander= (props) =>{
     const cancelRef = React.useRef()
 
     useEffect(() => {
-        axios.get(`https://blog-application-backend001.herokuapp.com/api/v1/blogs/${id}`)
+        axios.get(`https://blog-application-backend101.herokuapp.com/api/v1/blogs/${id}`)
         .then((res) => {
             setBlogs(res.data.blog);
         })
@@ -53,7 +53,7 @@ const BlogExpander= (props) =>{
     const deleteBlog = (e) =>{
       e.preventDefault();
       setRequestState("loading");
-      axios.delete(`https://blog-application-backend001.herokuapp.com/api/v1/blogs/${id}`,{ headers:{"Authorization" : `Bearer ${user.token}`}})
+      axios.delete(`https://blog-application-backend101.herokuapp.com/api/v1/blogs/${id}`,{ headers:{"Authorization" : `Bearer ${user.token}`}})
       .then((res) => {
           setRequestState("completed");
           toast({

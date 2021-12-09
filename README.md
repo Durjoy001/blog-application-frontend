@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Blog Application Frontend.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+access my site at : https://blog-application-frontend101.herokuapp.com
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Introduction](#introduction)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Dockerization](#dockerization)
+- [Deployment](#deployment)
 
-### `npm start`
+## Introduction:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It is a blog application where users can read all the created blogs by other users, also can create their own blogs after signing up in the application and will able to update and delete his/her own blog.Also I have **dockerized** this project and **deploy** it in heroku.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This repository contain all about front end related stuff of my blog application project , for backend code please visit this repo: https://github.com/Durjoy001/blog-application-backend
 
-### `npm test`
+## Technologies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React.js** which is a frontend web application library of **Javascript**.
+- **Chakra Ui** - library for building react application blocks.
 
-### `npm run build`
+## Installation:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Step - 1  
+  First clone this repo in your local machine, for this run this bellow command in your desired directory where you want to clone.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ```
+  git clone https://github.com/Durjoy001/blog-application-frontend.git
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Step - 2  
+  After colonning the repo run this bellow comand in your code editor terminal to installing project related various packages and resolving their various dependencies.
 
-### `npm run eject`
+  ```
+  npm install
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Step - 3
+  Finally start frontend by this command
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  ```
+  npm start
+  ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Dockerization:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+I have dockerized this project and upload the docker image in docker hub.If you want to run this project in your local machine from docker image then follow the bellow step:
 
-## Learn More
+- Step - 1  
+   First pull the docker image from docker hub
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  ```
+  docker pull durjoy62/blog-application-frontend101:1.0.0
+  ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- step - 2  
+  Create and run container by using this command
 
-### Code Splitting
+  ```
+  docker run -it -p 5000:3000 durjoy62/blog-application-frontend101:1.0.0
+  ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Open http://localhost:5000/ and verify.
 
-### Analyzing the Bundle Size
+## Deployment:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I have also deploy this project in heroku. Access it here : https://blog-application-frontend101.herokuapp.com
