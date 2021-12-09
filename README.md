@@ -37,7 +37,7 @@ This repository contain all about front end related stuff of my blog application
   npm install
   ```
 
-- Step - 3
+- Step - 3  
   Finally start frontend by this command
 
   ```
